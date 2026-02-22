@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>️by bimaa for jesyaa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-bg: #fce4ec;
+            --polaroid-white: #ffffff;
+            --shadow: rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fce4ec 0%, #ffc1e3 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Latar Belakang Hati */
+        .hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .heart {
+            position: absolute;
+            color: #ff85a1;
+            opacity: 0.5;
+            animation: float 10s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d81b60;
+            margin: 0;
+        }
+
+        header p {
+            font-weight: 500;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Container Galeri Polaroid */
+        .gallery-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+            margin-bottom: 50px;
+        }
+
+        /* Style Kartu Polaroid */
+        .polaroid {
+            background: var(--polaroid-white);
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 10px 25px var(--shadow);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            animation: fadeInUp 1s ease both;
+        }
+
+        .polaroid img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border: 1px solid #eee;
+        }
+
+        .caption {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.6rem;
+            text-align: center;
+            color: #444;
+            margin-top: 15px;
+        }
+
+        /* Efek Rotasi Acak agar terlihat natural */
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid:nth-child(odd) { transform: rotate(-3deg); }
+        .polaroid:nth-child(3n) { transform: rotate(5deg); }
+
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.1) !important;
+            z-index: 10;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 70%;
+            border: 10px solid white;
+            border-bottom: 50px solid white;
+            border-radius: 5px;
+            animation: zoomIn 0.3s ease;
+        }
+        #lightbox-caption {
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-top: -40px; /* agar teks berada di atas border bawah putih */
+            z-index: 2001;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; }
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .polaroid img { width: 200px; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hearts" id="heartContainer"></div>
+
+    <header>
+        <h1>Galerii Jesyaaa ♥️ <h1/>
+    </header>
+
+    <div class="gallery-container">
+        <div class="polaroid" onclick="openLightbox(this)">
+            <img src="IMG-20260221-WA0021.jpg" alt="Jesya 1">
+            <div class="caption">cantikkknyaaa</div>
+        </div>
+
+        <div class="polaroid" onclick="openLightbox(this)">
+            <img src="IMG-20260222-WA0003.jpg" alt="Jesya 2">
+            <div class="caption">lucunaaa</div>
+        </div>
+
+        <div class="polaroid" onclick="openLightbox(this)">
+            <img src="IMG-20260221-WA0024.jpg" alt="Jesya 3">
+            <div class="caption">imuppp</div>
+        </div>
+
+        <div class="polaroid" onclick="openLightbox(this)">
+            <img src="IMG-20260222-WA0004.jpg" alt="Jesya 4">
+            <div class="caption">gemaccc</div>
+        </div>
+    </div>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <span class="close-btn">&times;</span>
+        <img id="lightbox-img" src="">
+        <p id="lightbox-caption"></p>
+    </div>
+
+    <script>
+        // Efek Hati Melayang
+        function createHeart() {
+            const container = document.getElementById('heartContainer');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 7 + 's';
+            container.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 10000);
+        }
+        setInterval(createHeart, 500);
+
+        // Lightbox Logic
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            const caption = element.querySelector('.caption').innerText;
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox-caption').innerText = caption;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
